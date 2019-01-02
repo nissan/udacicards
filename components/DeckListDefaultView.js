@@ -21,7 +21,9 @@ export class DeckListDefaultView extends Component {
     const { decks } = this.state;
     console.log(decks);
     return (
-      <View>
+      <View
+        style={{ borderStyle: "solid", borderWidth: 1, padding: 4, margin: 4 }}
+      >
         <FlatList
           data={decks}
           renderItem={this.renderItem}
