@@ -4,8 +4,17 @@ import { View, Text } from "react-native";
 export const DeckSummary = ({ title, cardCount }) => {
   return (
     <View>
-      <Text>{title}</Text>
-      <Text>{cardCount}</Text>
+      <Text
+        style={{ fontSize: 20, margin: 4, padding: 4, textAlign: "center" }}
+      >
+        {title}
+      </Text>
+      <Text
+        style={{ fontSize: 12, margin: 4, padding: 4, textAlign: "center" }}
+      >
+        {" "}
+        {cardCount}
+      </Text>
     </View>
   );
 };

@@ -5,6 +5,8 @@ export const QuizView = () => {
   return (
     <View>
       <Text>This is the Quiz View</Text>
+      <Button title="Correct" />
+      <Button title="Incorrect" />
     </View>
   );
 };

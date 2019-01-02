@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, FlatList } from "react-native";
-import { getAllDecks } from "../utils/api";
+import { getDecks } from "../utils/api";
 import DeckSummary from "./DeckSummary";
 export class DeckListDefaultView extends Component {
   state = {
@@ -8,7 +8,7 @@ export class DeckListDefaultView extends Component {
   };
   async componentDidMount() {
     console.log("componentDidMount called");
-    const decks = await getAllDecks();
+    const decks = await getDecks();
     this.setState({ decks });
   }
   renderItem = ({ item }) => {
