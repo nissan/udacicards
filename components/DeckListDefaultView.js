@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, FlatList } from "react-native";
 import { getAllDecks } from "../utils/api";
 import DeckSummary from "./DeckSummary";
 export class DeckListDefaultView extends Component {
@@ -11,19 +11,22 @@ export class DeckListDefaultView extends Component {
     const decks = await getAllDecks();
     this.setState({ decks });
   }
+  renderItem = ({ item }) => {
+    return (
+      <DeckSummary key={item.id} title={item.title} cardCount={item.cards} />
+    );
+  };
   render() {
     console.log("render called");
     const { decks } = this.state;
     console.log(decks);
     return (
       <View>
-        {Object.keys(decks).map(key => (
-          <DeckSummary
-            key={decks[key].id}
-            title={decks[key].title}
-            cardCount={decks[key].cards}
-          />
-        ))}
+        <FlatList
+          data={decks}
+          renderItem={this.renderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </View>
     );
   }
