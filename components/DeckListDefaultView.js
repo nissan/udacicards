@@ -11,7 +11,6 @@ export class DeckListDefaultView extends Component {
     this.setState({ decks });
   }
   renderItem = ({ item }) => {
-    console.log("item", item);
     return (
       <DeckSummary
         key={item.title}
