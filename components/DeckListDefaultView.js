@@ -16,6 +16,7 @@ export class DeckListDefaultView extends Component {
         key={item.title}
         title={item.title}
         cardCount={item.cardCount}
+        onPress={() => alert(`${item.title} pressed`)}
       />
     );
   };
@@ -37,9 +38,7 @@ export class DeckListDefaultView extends Component {
 }
 const styles = StyleSheet.create({
   list: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "stretch"
+    flex: 1
   }
 });
 export default DeckListDefaultView;

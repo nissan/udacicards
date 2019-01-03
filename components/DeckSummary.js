@@ -1,11 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-export const DeckSummary = ({ title, cardCount }) => {
+export const DeckSummary = ({ title, cardCount, onPress }) => {
   return (
     <View style={styles.summary}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.count}>{cardCount}</Text>
+      <Button style={styles.title} title={title} onPress={onPress} />
+      <Text style={styles.count}>
+        {cardCount} {Number(cardCount) === 1 ? " card" : " cards"}
+      </Text>
     </View>
   );
 };
