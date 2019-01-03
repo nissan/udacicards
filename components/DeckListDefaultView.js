@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { getDecks } from "../utils/api";
 import DeckSummary from "./DeckSummary";
 export class DeckListDefaultView extends Component {
@@ -22,9 +22,7 @@ export class DeckListDefaultView extends Component {
   render() {
     const { decks } = this.state;
     return (
-      <View
-        style={{ borderStyle: "solid", borderWidth: 1, padding: 4, margin: 4 }}
-      >
+      <View style={styles.list}>
         <FlatList
           data={Object.keys(decks).map(key => ({
             title: decks[key].title,
@@ -37,5 +35,10 @@ export class DeckListDefaultView extends Component {
     );
   }
 }
-
+const styles = StyleSheet.create({
+  list: {
+    flex: 1,
+    justifyContent: "space-between"
+  }
+});
 export default DeckListDefaultView;

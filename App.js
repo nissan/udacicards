@@ -19,7 +19,9 @@ export default class App extends React.Component {
         <NewQuestionView />
         <QuizView />
         <IndividualDeckView /> */}
-        <DeckListDefaultView />
+        <View style={styles.box}>
+          <DeckListDefaultView />
+        </View>
       </View>
     );
   }
@@ -32,6 +34,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-end"
+  },
+  box: {
+    height: "95%",
+    width: "100%",
+    backgroundColor: "#eee",
+    margin: 10
   }
 });
