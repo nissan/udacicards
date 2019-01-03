@@ -14,15 +14,17 @@ export default class App extends React.Component {
   render() {
     setDummyData();
     return (
-      <View style={styles.container}>
-        {/* <NewDeckView />
+      <Provider store={createStore(reducer)}>
+        <View style={styles.container}>
+          {/* <NewDeckView />
         <NewQuestionView />
         <QuizView />
-        <IndividualDeckView /> */}
-        <View style={styles.box}>
-          <DeckListDefaultView />
+      <IndividualDeckView /> */}
+          <View style={styles.box}>
+            <DeckListDefaultView />
+          </View>
         </View>
-      </View>
+      </Provider>
     );
   }
 }
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     alignItems: "center",
-    justifyContent: "flex-end"
+    justifyContent: "center"
   },
   box: {
     height: "95%",

@@ -38,7 +38,8 @@ export class DeckListDefaultView extends Component {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-    justifyContent: "space-between"
+    justifyContent: "center",
+    alignItems: "stretch"
   }
 });
 export default DeckListDefaultView;
