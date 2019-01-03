@@ -1,33 +1,36 @@
-export const decks = [
-  {
-    id: 1,
-    title: "udacicards",
-    cards: 3
-  },
-  {
-    id: 2,
-    title: "new deck",
-    cards: 0
-  },
-  {
-    id: 3,
-    title: "New deck 2",
-    cards: 0
-  }
-];
+import { AsyncStorage } from "react-native";
+import { DECKS_STORAGE_KEY } from "./_decks";
 
 export const getDecks = async () => {
-  return await decks;
+  const decks = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+  return JSON.parse(decks);
 };
 
 export const getDeck = id => {
-  return decks.map(deck => deck.id === id);
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+    return data[id];
+  });
 };
 
 export const saveDeckTitle = title => {
-  const newTitle = {
-    title,
-    count: 0
-  };
-  decks.push(newTitle);
+  return AsyncStorage.mergeItem(
+    DECKS_STORAGE_KEY,
+    JSON.stringify({
+      [title]: { title, questions: [] }
+    })
+  );
+};
+
+export const addCardToDeck = (title, card) => {
+  const decks = AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+    return data;
+  });
+  const deck = decks[title];
+  deck.questions.push(card);
+  return AsyncStorage.mergeItem(
+    DECKS_STORAGE_KEY,
+    JSON.stringify({ [title]: decks })
+  );
 };

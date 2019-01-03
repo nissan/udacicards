@@ -4,28 +4,33 @@ import { getDecks } from "../utils/api";
 import DeckSummary from "./DeckSummary";
 export class DeckListDefaultView extends Component {
   state = {
-    decks: []
+    decks: {}
   };
   async componentDidMount() {
-    console.log("componentDidMount called");
     const decks = await getDecks();
     this.setState({ decks });
   }
   renderItem = ({ item }) => {
+    console.log("item", item);
     return (
-      <DeckSummary key={item.id} title={item.title} cardCount={item.cards} />
+      <DeckSummary
+        key={item.title}
+        title={item.title}
+        cardCount={item.cardCount}
+      />
     );
   };
   render() {
-    console.log("render called");
     const { decks } = this.state;
-    console.log(decks);
     return (
       <View
         style={{ borderStyle: "solid", borderWidth: 1, padding: 4, margin: 4 }}
       >
         <FlatList
-          data={decks}
+          data={Object.keys(decks).map(key => ({
+            title: decks[key].title,
+            cardCount: decks[key].questions.length
+          }))}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
         />
