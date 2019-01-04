@@ -1,4 +1,5 @@
-import { AppLoading } from "expo";
+import { AppLoading, Constants } from "expo";
+import { View, Platform, StatusBar } from "react-native";
 import React from "react";
 import AppNavigator from "./components/AppNavigator";
 import { setDummyData } from "./utils/_decks";
@@ -23,6 +24,11 @@ export default class App extends React.Component {
     }
     return (
       <Provider store={createStore(reducer)}>
+        <View
+          style={{ height: Constants.statusBarHeight, backgroundColor: "blue" }}
+        >
+          <StatusBar translucent barStyle="light-content" {...this.props} />
+        </View>
         <AppNavigator />
       </Provider>
     );

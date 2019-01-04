@@ -56,8 +56,7 @@ const styles = StyleSheet.create({
   deck: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 25
+    alignItems: "center"
   },
   input: {
     width: 200,

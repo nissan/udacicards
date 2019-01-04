@@ -75,7 +75,7 @@ export const AppNavigator =
               }
             },
             tabBarOptions: {
-              style: { paddingTop: 20 },
+              style: {},
               activeTintColor: "tomato",
               inactiveTintColor: "white"
             }
