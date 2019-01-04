@@ -14,7 +14,7 @@ export default class App extends React.Component {
       <View style={[styles.container, { paddingTop: 25 }]}>
         {/* <NewDeckView />
         <NewQuestionView />*/}
-        {/* <QuizView questions={[{question: "Is this cool", answer: "Yes"}, ]} answer="Yes" /> */}
+        <QuizView id="React" />
         <IndividualDeckView
           id="React"
           onAddCardPress={() => {
