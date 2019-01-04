@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { getDecks } from "../utils/api";
 import DeckSummary from "./DeckSummary";
+import { AppLoading } from "expo";
+import { connect } from "react-redux";
+import { receiveDecks } from "../actions";
 export class DeckListDefaultView extends Component {
-  state = {
-    decks: {}
-  };
   async componentDidMount() {
     const decks = await getDecks();
-    this.setState({ decks });
+    this.props.dispatch(receiveDecks(decks));
   }
   renderItem = ({ item }) => {
     return (
@@ -21,24 +21,36 @@ export class DeckListDefaultView extends Component {
     );
   };
   render() {
-    const { decks } = this.state;
-    return (
-      <View style={styles.list}>
-        <FlatList
-          data={Object.keys(decks).map(key => ({
-            title: decks[key].title,
-            cardCount: decks[key].questions.length
-          }))}
-          renderItem={this.renderItem}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-    );
+    const { decks } = this.props;
+    if (decks !== undefined) {
+      return (
+        <View style={styles.list}>
+          <FlatList
+            data={Object.keys(decks).map(key => ({
+              title: decks[key].title,
+              cardCount: decks[key].questions.length
+            }))}
+            renderItem={this.renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
+      );
+      return <AppLoading />;
+    }
   }
 }
 const styles = StyleSheet.create({
   list: {
-    flex: 1
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "stretch",
+    paddingTop: 25
   }
 });
-export default DeckListDefaultView;
+
+const mapStateToProps = decks => {
+  return {
+    decks
+  };
+};
+export default connect(mapStateToProps)(DeckListDefaultView);

@@ -13,13 +13,17 @@ export const getDeck = id => {
   });
 };
 
-export const saveDeckTitle = title => {
-  return AsyncStorage.mergeItem(
+export const saveDeckTitle = async title => {
+  return await AsyncStorage.mergeItem(
     DECKS_STORAGE_KEY,
     JSON.stringify({
       [title]: { title, questions: [] }
     })
   );
+  // const decks = await AsyncStorage.getItem(DECKS_STORAGE_KEY).then(result => {
+  //   return JSON.parse(result);
+  // });
+  // console.log("Decks updated: ", decks);
 };
 
 export const addCardToDeck = (title, card) => {

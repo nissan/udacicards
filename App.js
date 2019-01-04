@@ -1,37 +1,30 @@
+import { AppLoading } from "expo";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import DeckListDefaultView from "./components/DeckListDefaultView";
-import IndividualDeckView from "./components/IndividualDeckView";
-import NewDeckView from "./components/NewDeckView";
-import NewQuestionView from "./components/NewQuestionView";
-import QuizView from "./components/QuizView";
+import AppNavigator from "./components/AppNavigator";
 import { setDummyData } from "./utils/_decks";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducers";
+import { receiveDecks } from "./actions";
 
 export default class App extends React.Component {
+  state = {
+    ready: false
+  };
+  componentDidMount() {
+    setDummyData().then(data => {
+      this.setState({ ready: true });
+    });
+  }
   render() {
-    setDummyData();
+    const { ready } = this.state;
+    if (!ready) {
+      return <AppLoading />;
+    }
     return (
-      <View style={[styles.container, { paddingTop: 25 }]}>
-        {/* <NewDeckView />
-        <NewQuestionView />*/}
-        <QuizView id="React" />
-        <IndividualDeckView
-          id="React"
-          onAddCardPress={() => {
-            alert("Add Card Pressed");
-          }}
-          onStartQuizPress={() => {
-            alert("Start Quiz Pressed");
-          }}
-        />
-        <DeckListDefaultView />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
