@@ -5,13 +5,13 @@ import { red } from "../utils/colors";
 export const TextButton = ({ children, onPress, style = {} }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text style={[styles.reset, style]}>{children}</Text>
+      <Text style={[styles.plain, style]}>{children}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  reset: {
+  plain: {
     textAlign: "center",
     color: red
   }

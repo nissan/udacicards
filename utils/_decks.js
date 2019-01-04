@@ -28,7 +28,7 @@ export const dummyData = Object.assign({
   }
 });
 
-export const setDummyData = () => {
-  AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(dummyData));
+export const setDummyData = async () => {
+  await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(dummyData));
   return dummyData;
 };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { getDeck } from "../utils/api";
 
 export class IndividualDeckView extends Component {
@@ -39,20 +39,14 @@ export class IndividualDeckView extends Component {
           </Text>
         </View>
         <View style={{ margin: 4, padding: 4 }}>
-          <Button
-            style={styles.btnAddCard}
-            title="Add Card"
-            onPress={this.addCard}
-            color="black"
-          />
+          <TouchableOpacity style={styles.btnBlack} onPress={this.addCard}>
+            <Text style={styles.btnTextWhite}>Add Card</Text>
+          </TouchableOpacity>
         </View>
         <View style={{ margin: 4, padding: 4 }}>
-          <Button
-            style={styles.btnStartQuiz}
-            title="Start Quiz"
-            onPress={this.startQuiz}
-            color="blue"
-          />
+          <TouchableOpacity style={styles.btnGray} onPress={this.startQuiz}>
+            <Text style={styles.btnTextBlack}>Start Quiz</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -67,15 +61,25 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 20, margin: 4, padding: 4, textAlign: "center" },
   count: { fontSize: 12, margin: 4, padding: 4, textAlign: "center" },
-  btnAddCard: {
+  btnGray: {
     margin: 4,
     padding: 4,
-    textAlign: "center"
+    alignItems: "center",
+    backgroundColor: "gray"
   },
-  btnStartQuiz: {
+  btnBlack: {
     margin: 4,
     padding: 4,
-    textAlign: "center"
+    alignItems: "center",
+    backgroundColor: "#000"
+  },
+  btnTextBlack: {
+    padding: 20,
+    color: "#000"
+  },
+  btnTextWhite: {
+    padding: 20,
+    color: "white"
   }
 });
 

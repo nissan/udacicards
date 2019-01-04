@@ -62,6 +62,9 @@ class QuizView extends React.Component {
             <Text style={styles.title}>
               Your score is {correct} correct and {incorrect} incorrect
             </Text>
+            <TextButton style={{ textAlign: "center", padding: 4, margin: 4 }}>
+              End Quiz
+            </TextButton>
           </View>
         )}
         {!endQuiz && (
